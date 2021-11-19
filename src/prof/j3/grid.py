@@ -52,8 +52,7 @@ class Grid:
             if self.puzzle[i] == '.':
                 self.cases.append(Case(i))
             else:
-                self.cases.append(Case(i, int(self.puzzle[i])))
-                
+                self.cases.append(Case(i, int(self.puzzle[i])))   
                 
     def casesToString(self):
         """
@@ -98,10 +97,12 @@ class Grid:
             >>> S.puzzleNow[0] == '7'
             False
         """
-        self.cases[position].setValue(value)
-        self.puzzleNow = self.casesToString()
+        if self.puzzle[position] != '.':
+            return None
         
-        pass
+        else:
+            self.cases[position].setValue(value)
+            self.puzzleNow = self.casesToString()
                 
     def __repr__(self):
         """
