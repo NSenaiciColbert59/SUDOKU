@@ -12,7 +12,7 @@ class Grid:
             (False, True)
         """
         self.puzzle = puzzle
-        self.full = '.' not in self.puzzle
+        self.full = self.puzzle.count('.') == 0
         
         pass
             
