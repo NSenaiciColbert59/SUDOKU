@@ -136,7 +136,14 @@ class Grid:
             >>> S.cases[1].valid
             True
         """
-        pass
+        c = [el.value for el in self.cases if el.line == self.cases[position].line and el.position != position]
+
+        if self.cases[position].value in c:
+            self.cases[position].valid = False
+            return False
+        else:
+            self.cases[position].valid = True
+            return True
             
     def verifRow(self, position):
         """
@@ -152,7 +159,14 @@ class Grid:
             >>> S.cases[9].valid
             True
         """
-        pass
+        c = [el.value for el in self.cases if el.row == self.cases[position].row and el.position != position]
+        
+        if self.cases[position].value in c:
+            self.cases[position].valid = False
+            return False
+        else:
+            self.cases[position].valid = True
+            return True
             
     def verifRegion(self, position):
         """
@@ -173,9 +187,12 @@ class Grid:
     def verif(self, position):
         """
             Méthode qui permet de vérifier la ligne, la colonne et la région.
-        """
-        pass
-                    
+        """ 
+        a=self.verifLine(position)
+        b=self.verifRow(position)
+        c=self.verifRegion(position)
+        return a and b and c
+                 
     def __repr__(self):
         """
             Méthode de représentation d'un Sudoku
